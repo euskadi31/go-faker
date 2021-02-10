@@ -72,6 +72,7 @@ func (g *PersonGenerator) Generate() *PersonInfo {
 	}
 
 	if n := len(firstNames); n > 1 {
+		//nolint:gosec
 		i := rand.Intn(n - 1)
 
 		person.FirstName = firstNames[i]
@@ -85,18 +86,21 @@ func (g *PersonGenerator) Generate() *PersonInfo {
 }
 
 func getManFirstName() string {
+	//nolint:gosec
 	i := rand.Intn(len(dataManFirstNames) - 1)
 
 	return dataManFirstNames[i]
 }
 
 func getWomanFirstName() string {
+	//nolint:gosec
 	i := rand.Intn(len(dataWomanFirstNames) - 1)
 
 	return dataWomanFirstNames[i]
 }
 
 func getLastName() string {
+	//nolint:gosec
 	i := rand.Intn(len(dataLastNames) - 1)
 
 	return dataLastNames[i]

@@ -4,6 +4,7 @@
 
 package faker
 
+//nolint:misspell
 var dataLastNames = []string{
 	"Smith",
 	"Johnson",

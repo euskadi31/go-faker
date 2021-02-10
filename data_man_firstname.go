@@ -4,6 +4,7 @@
 
 package faker
 
+//nolint:misspell
 var dataManFirstNames = []string{
 	"Liam",
 	"Noah",

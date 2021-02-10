@@ -42,3 +42,9 @@ func TestMacAddress(t *testing.T) {
 
 	assert.Equal(t, 17, len(mac))
 }
+
+func BenchmarkMacAddress(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		MacAddress()
+	}
+}

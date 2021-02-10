@@ -4,6 +4,7 @@
 
 package faker
 
+//nolint:misspell
 var dataWomanFirstNames = []string{
 	"Olivia",
 	"Emma",

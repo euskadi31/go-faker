@@ -80,3 +80,9 @@ func TestPerson(t *testing.T) {
 
 	assert.True(t, regexp.MustCompile("(Male|Female)").MatchString(person.Gender))
 }
+
+func BenchmarkPerson(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		Person()
+	}
+}
