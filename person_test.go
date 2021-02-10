@@ -86,3 +86,12 @@ func BenchmarkPerson(b *testing.B) {
 		Person()
 	}
 }
+
+func BenchmarkPersonGenerator(b *testing.B) {
+	g := NewPersonGenerator()
+	g.Flags = PersonFirstName | PersonLastName | PersonWoman
+
+	for i := 0; i < b.N; i++ {
+		g.Generate()
+	}
+}

@@ -48,3 +48,12 @@ func BenchmarkMacAddress(b *testing.B) {
 		MacAddress()
 	}
 }
+
+func BenchmarkMacAddressGenerator(b *testing.B) {
+	g := NewMacAddressGenerator()
+	g.Prefix = "FF"
+
+	for i := 0; i < b.N; i++ {
+		g.Generate()
+	}
+}

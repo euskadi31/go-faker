@@ -85,27 +85,6 @@ func (g *PersonGenerator) Generate() *PersonInfo {
 	return person
 }
 
-func getManFirstName() string {
-	//nolint:gosec
-	i := rand.Intn(len(dataManFirstNames) - 1)
-
-	return dataManFirstNames[i]
-}
-
-func getWomanFirstName() string {
-	//nolint:gosec
-	i := rand.Intn(len(dataWomanFirstNames) - 1)
-
-	return dataWomanFirstNames[i]
-}
-
-func getLastName() string {
-	//nolint:gosec
-	i := rand.Intn(len(dataLastNames) - 1)
-
-	return dataLastNames[i]
-}
-
 // Person return an generated person
 func Person() *PersonInfo {
 	return NewPersonGenerator().Generate()

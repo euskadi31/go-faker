@@ -4,6 +4,8 @@
 
 package faker
 
+import "math/rand"
+
 //nolint:misspell
 var dataWomanFirstNames = []string{
 	"Olivia",
@@ -17911,4 +17913,11 @@ var dataWomanFirstNames = []string{
 	"Zyna",
 	"Zynlee",
 	"Zyrielle",
+}
+
+func getWomanFirstName() string {
+	//nolint:gosec
+	i := rand.Intn(len(dataWomanFirstNames) - 1)
+
+	return dataWomanFirstNames[i]
 }
