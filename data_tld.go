@@ -6,6 +6,7 @@ package faker
 
 import "math/rand"
 
+//nolint:misspell
 var dataTLDs = []string{
 	"aaa",
 	"aarp",
