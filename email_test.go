@@ -20,6 +20,14 @@ func TestEmailGenerator(t *testing.T) {
 	assert.True(t, regexp.MustCompile("^[a-z0-9\\-.]+@[a-z0-9\\-.].[a-z0-9.]{2,52}").MatchString(email), "Email %q is not valid", email)
 }
 
+func TestEmailGeneratorWithFixedDomain(t *testing.T) {
+	g := NewEmailGenerator(WithEmailDomain("acme.tld"))
+
+	email := g.Generate()
+
+	assert.True(t, regexp.MustCompile(`^[a-z0-9\-.]+@acme\.tld`).MatchString(email), "Email %q is not valid", email)
+}
+
 func TestEmail(t *testing.T) {
 	email := Email()
 

@@ -14,19 +14,36 @@ type EmailFlags uint16
 
 // EmailFlags enums
 const (
-	EmailRealDomain EmailFlags = 1 << iota
+	EmailRealDomain  EmailFlags = 1 << iota
+	EmailFixedDomain EmailFlags = 2 << iota
 )
 
 // EmailGenerator struct
 type EmailGenerator struct {
-	Flags EmailFlags
+	domain string
+	Flags  EmailFlags
+}
+
+type EmailOption func(g *EmailGenerator)
+
+func WithEmailDomain(domain string) EmailOption {
+	return func(g *EmailGenerator) {
+		g.domain = domain
+		g.Flags = EmailFixedDomain
+	}
 }
 
 // NewEmailGenerator return EmailGenerator
-func NewEmailGenerator() *EmailGenerator {
-	return &EmailGenerator{
+func NewEmailGenerator(opts ...EmailOption) *EmailGenerator {
+	g := &EmailGenerator{
 		Flags: EmailRealDomain,
 	}
+
+	for _, opt := range opts {
+		opt(g)
+	}
+
+	return g
 }
 
 // Generate email
@@ -34,6 +51,8 @@ func (g *EmailGenerator) Generate() string {
 	var domain string
 	if g.Flags&EmailRealDomain != 0 {
 		domain = getRealEmailDomain()
+	} else if g.Flags&EmailFixedDomain != 0 && g.domain != "" {
+		domain = g.domain
 	} else {
 		domain = getFakeDomain()
 	}
