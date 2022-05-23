@@ -17,7 +17,7 @@ func TestEmailGenerator(t *testing.T) {
 
 	email := g.Generate()
 
-	assert.True(t, regexp.MustCompile("^[a-z0-9\\-.]+@[a-z0-9\\-.].[a-z0-9.]{2,52}").MatchString(email), "Email %q is not valid", email)
+	assert.True(t, regexp.MustCompile(`^[a-z0-9-.]+@[a-z0-9-.].[a-z0-9.]{2,52}`).MatchString(email), "Email %q is not valid", email)
 }
 
 func TestEmailGeneratorWithFixedDomain(t *testing.T) {
@@ -31,7 +31,7 @@ func TestEmailGeneratorWithFixedDomain(t *testing.T) {
 func TestEmail(t *testing.T) {
 	email := Email()
 
-	assert.True(t, regexp.MustCompile("^[a-z0-9\\-.]+@[a-z0-9\\-.].[a-z0-9.]{2,52}").MatchString(email), "Email %q is not valid", email)
+	assert.True(t, regexp.MustCompile(`^[a-z0-9-.]+@[a-z0-9-.].[a-z0-9.]{2,52}`).MatchString(email), "Email %q is not valid", email)
 }
 
 func BenchmarkEmail(b *testing.B) {

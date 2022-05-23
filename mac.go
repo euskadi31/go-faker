@@ -10,22 +10,22 @@ import (
 	"github.com/euskadi31/go-reggen"
 )
 
-const macAddressPattern = "^[A-F0-9]{2}:[A-F0-9]{2}:[A-F0-9]{2}:[A-F0-9]{2}:[A-F0-9]{2}:[A-F0-9]{2}$"
+const macAddressPattern = `^[A-F0-9]{2}:[A-F0-9]{2}:[A-F0-9]{2}:[A-F0-9]{2}:[A-F0-9]{2}:[A-F0-9]{2}$`
 
-// MacAddressGenerator struct
+// MacAddressGenerator struct.
 type MacAddressGenerator struct {
 	Prefix    string
 	Separator string
 }
 
-// NewMacAddressGenerator return MacAddressGenerator
+// NewMacAddressGenerator return MacAddressGenerator.
 func NewMacAddressGenerator() *MacAddressGenerator {
 	return &MacAddressGenerator{
 		Separator: ":",
 	}
 }
 
-// Generate mac address
+// Generate mac address.
 func (g *MacAddressGenerator) Generate() string {
 	v, _ := reggen.Generate(macAddressPattern)
 
@@ -36,9 +36,7 @@ func (g *MacAddressGenerator) Generate() string {
 
 		prefixParts := strings.Split(prefix, ":")
 
-		for i := 0; i < len(prefixParts); i++ {
-			parts[i] = prefixParts[i]
-		}
+		_ = copy(parts, prefixParts)
 
 		return strings.Join(parts, g.Separator)
 	}
@@ -46,7 +44,7 @@ func (g *MacAddressGenerator) Generate() string {
 	return strings.Replace(v, ":", g.Separator, 6)
 }
 
-// MacAddress return an generated mac address
+// MacAddress return an generated mac address.
 func MacAddress() string {
 	return NewMacAddressGenerator().Generate()
 }

@@ -6,10 +6,10 @@ package faker
 
 import "math/rand"
 
-// PersonFlags control the behavior of the generator
+// PersonFlags control the behavior of the generator.
 type PersonFlags uint16
 
-// PersonFlags enums
+// PersonFlags enums.
 const (
 	PersonFirstName PersonFlags = 1 << iota
 	PersonLastName
@@ -19,7 +19,7 @@ const (
 	PersonAll = PersonFirstName | PersonLastName | PersonMan | PersonWoman
 )
 
-// PersonInfo struct
+// PersonInfo struct.
 type PersonInfo struct {
 	FirstName string `json:"first_name"`
 	LastName  string `json:"last_name"`
@@ -38,19 +38,19 @@ func (p PersonInfo) String() string {
 	return p.LastName
 }
 
-// PersonGenerator struct
+// PersonGenerator struct.
 type PersonGenerator struct {
 	Flags PersonFlags
 }
 
-// NewPersonGenerator return PersonGenerator
+// NewPersonGenerator return PersonGenerator.
 func NewPersonGenerator() *PersonGenerator {
 	return &PersonGenerator{
 		Flags: PersonAll,
 	}
 }
 
-// Generate person
+// Generate person.
 func (g *PersonGenerator) Generate() *PersonInfo {
 	person := &PersonInfo{}
 
@@ -85,7 +85,7 @@ func (g *PersonGenerator) Generate() *PersonInfo {
 	return person
 }
 
-// Person return an generated person
+// Person return an generated person.
 func Person() *PersonInfo {
 	return NewPersonGenerator().Generate()
 }
