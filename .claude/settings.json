@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(go version *)",
-      "Bash(golangci-lint version *)"
+      "Bash(golangci-lint version *)",
+      "Bash(gh api *)",
+      "Bash(gh pr *)"
     ]
   }
 }

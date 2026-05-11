@@ -6,6 +6,8 @@ package faker
 
 import "strings"
 
+var localeSeparators = []string{"-", "_"}
+
 // LocaleOptions controls how Locale values are generated.
 type LocaleOptions struct {
 	Language  string
@@ -53,17 +55,17 @@ func (f *Faker) Locale(opts ...LocaleOption) string {
 
 	language := o.Language
 	if language == "" {
-		language = pick(f.rand, languageCodes)
+		language = pickLanguageCode(f.rand)
 	}
 
 	country := o.Country
 	if country == "" {
-		country = pick(f.rand, countryCodes)
+		country = pickCountryCode(f.rand)
 	}
 
 	separator := o.Separator
 	if separator == "" {
-		separator = pick(f.rand, []string{"-", "_"})
+		separator = pick(f.rand, localeSeparators)
 	}
 
 	if separator != "-" && separator != "_" {

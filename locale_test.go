@@ -101,16 +101,16 @@ func TestLocalePackageLevelHelper(t *testing.T) {
 }
 
 func TestLocaleDataIsNotEmpty(t *testing.T) {
-	assert.NotEmpty(t, languageCodes)
-	assert.NotEmpty(t, countryCodes)
+	assert.NotEmpty(t, dataLanguageCodes)
+	assert.NotEmpty(t, dataCountryCodes)
 
 	langRE := regexp.MustCompile(`^[a-z]{2}$`)
-	for _, code := range languageCodes {
+	for _, code := range dataLanguageCodes {
 		assert.True(t, langRE.MatchString(code), "language code %q is not lowercase 2-letter", code)
 	}
 
 	countryRE := regexp.MustCompile(`^[A-Z]{2}$`)
-	for _, code := range countryCodes {
+	for _, code := range dataCountryCodes {
 		assert.True(t, countryRE.MatchString(code), "country code %q is not uppercase 2-letter", code)
 	}
 }

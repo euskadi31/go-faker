@@ -4,7 +4,9 @@
 
 package faker
 
-var languageCodes = []string{
+import "math/rand/v2"
+
+var dataLanguageCodes = []string{
 	"af",
 	"ar",
 	"bg",
@@ -42,4 +44,8 @@ var languageCodes = []string{
 	"uk",
 	"vi",
 	"zh",
+}
+
+func pickLanguageCode(rng *rand.Rand) string {
+	return pick(rng, dataLanguageCodes)
 }
