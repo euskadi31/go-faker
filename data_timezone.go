@@ -6,7 +6,7 @@ package faker
 
 import "math/rand/v2"
 
-//nolint:misspell
+//nolint:misspell, goconst
 var dataTZ = []string{
 	"Africa/Abidjan",
 	"Africa/Accra",
