@@ -82,7 +82,7 @@ func TestPerson(t *testing.T) {
 }
 
 func BenchmarkPerson(b *testing.B) {
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		Person()
 	}
 }
@@ -91,7 +91,7 @@ func BenchmarkPersonGenerator(b *testing.B) {
 	g := NewPersonGenerator()
 	g.Flags = PersonFirstName | PersonLastName | PersonWoman
 
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		g.Generate()
 	}
 }

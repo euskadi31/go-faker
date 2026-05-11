@@ -4,16 +4,12 @@
 
 package faker
 
-import "math/rand"
+import "math/rand/v2"
 
-func getFirstName() string {
-	firstNames := []string{}
+func pickFirstName(rng *rand.Rand) string {
+	if rng.IntN(2) == 0 {
+		return pickManFirstName(rng)
+	}
 
-	firstNames = append(firstNames, getManFirstName())
-	firstNames = append(firstNames, getWomanFirstName())
-
-	//nolint:gosec
-	i := rand.Intn(len(firstNames) - 1)
-
-	return firstNames[i]
+	return pickWomanFirstName(rng)
 }

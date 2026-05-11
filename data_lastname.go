@@ -4,7 +4,7 @@
 
 package faker
 
-import "math/rand"
+import "math/rand/v2"
 
 //nolint:misspell
 var dataLastNames = []string{
@@ -1010,9 +1010,6 @@ var dataLastNames = []string{
 	"Archer",
 }
 
-func getLastName() string {
-	//nolint:gosec
-	i := rand.Intn(len(dataLastNames) - 1)
-
-	return dataLastNames[i]
+func pickLastName(rng *rand.Rand) string {
+	return pick(rng, dataLastNames)
 }
