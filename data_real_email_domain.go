@@ -4,7 +4,7 @@
 
 package faker
 
-import "math/rand"
+import "math/rand/v2"
 
 var dataRealEmailDomains = []string{
 	"gmail.com",
@@ -108,9 +108,6 @@ var dataRealEmailDomains = []string{
 	"aim.com",
 }
 
-func getRealEmailDomain() string {
-	//nolint:gosec
-	i := rand.Intn(len(dataRealEmailDomains) - 1)
-
-	return dataRealEmailDomains[i]
+func pickRealEmailDomain(rng *rand.Rand) string {
+	return pick(rng, dataRealEmailDomains)
 }

@@ -4,7 +4,7 @@
 
 package faker
 
-import "math/rand"
+import "math/rand/v2"
 
 //nolint:misspell
 var dataTLDs = []string{
@@ -5193,9 +5193,6 @@ var dataTLDs = []string{
 	"wcape.school.za",
 }
 
-func getTLD() string {
-	//nolint:gosec
-	i := rand.Intn(len(dataTLDs) - 1)
-
-	return dataTLDs[i]
+func pickTLD(rng *rand.Rand) string {
+	return pick(rng, dataTLDs)
 }

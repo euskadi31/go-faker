@@ -4,12 +4,39 @@
 
 package faker
 
-import "github.com/euskadi31/go-reggen"
+import (
+	"math/rand/v2"
+	"strings"
+)
 
-func getFakeDomain() string {
-	tld := getTLD()
+const domainAlphabet = "abcdefghijklmnopqrstuvwxyz0123456789"
 
-	name, _ := reggen.Generate("[a-z0-9]{1,8}([a-z]|-)[a-z0-9]")
+// generateFakeDomain builds a syntactically plausible but non-real domain. The
+// label length is in [3, 10]; characters come from [a-z0-9-] with a '-' never
+// at the start or end of the label.
+func generateFakeDomain(rng *rand.Rand) string {
+	labelLen := 3 + rng.IntN(8)
 
-	return name + "." + tld
+	var b strings.Builder
+
+	b.Grow(labelLen)
+
+	b.WriteByte(domainAlphabet[rng.IntN(len(domainAlphabet))])
+
+	for i := 1; i < labelLen-1; i++ {
+		// Inner characters may be '-' with low probability.
+		if rng.IntN(8) == 0 {
+			b.WriteByte('-')
+
+			continue
+		}
+
+		b.WriteByte(domainAlphabet[rng.IntN(len(domainAlphabet))])
+	}
+
+	if labelLen > 1 {
+		b.WriteByte(domainAlphabet[rng.IntN(len(domainAlphabet))])
+	}
+
+	return b.String() + "." + pickTLD(rng)
 }
