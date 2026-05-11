@@ -8,6 +8,7 @@ import (
 	"math/rand/v2"
 	"slices"
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -17,6 +18,9 @@ func TestTimezone(t *testing.T) {
 
 	assert.NotEmpty(t, tz)
 	assert.True(t, slices.Contains(dataTZ, tz), "%q is not a known time zone", tz)
+
+	_, err := time.LoadLocation(tz)
+	assert.NoError(t, err, "%q is not loadable via time.LoadLocation", tz)
 }
 
 func TestFakerTimezone(t *testing.T) {
@@ -26,6 +30,16 @@ func TestFakerTimezone(t *testing.T) {
 
 	assert.NotEmpty(t, tz)
 	assert.True(t, slices.Contains(dataTZ, tz), "%q is not a known time zone", tz)
+
+	_, err := time.LoadLocation(tz)
+	assert.NoError(t, err, "%q is not loadable via time.LoadLocation", tz)
+}
+
+func TestTimezoneDataLoadable(t *testing.T) {
+	for _, tz := range dataTZ {
+		_, err := time.LoadLocation(tz)
+		assert.NoErrorf(t, err, "%q in dataTZ is not loadable via time.LoadLocation", tz)
+	}
 }
 
 func TestTimezoneDeterministic(t *testing.T) {

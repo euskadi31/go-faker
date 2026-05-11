@@ -2,7 +2,10 @@
   "permissions": {
     "allow": [
       "Bash(go version *)",
-      "Bash(golangci-lint version *)"
+      "Bash(golangci-lint version *)",
+      "Bash(gh pr *)",
+      "Bash(gh api *)",
+      "Bash(/bin/ls /Users/euskadi31/Projects/Github/euskadi31/go-faker/)"
     ]
   }
 }

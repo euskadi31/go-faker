@@ -4,13 +4,15 @@
 
 package faker
 
-// Timezone returns a randomly selected IANA time zone name (e.g.
-// "Europe/Paris", "America/New_York").
+// Timezone returns a randomly selected IANA tzdb name or alias (e.g.
+// "Europe/Paris", "America/New_York", "UTC", "Eire"). The returned value
+// is loadable via time.LoadLocation.
 func (f *Faker) Timezone() string {
 	return pickTZ(f.rand)
 }
 
-// Timezone returns a generated time zone name using the default faker.
+// Timezone returns a generated IANA tzdb name or alias using the default faker.
+// The returned value is loadable via time.LoadLocation.
 func Timezone() string {
 	return defaultFaker().Timezone()
 }
