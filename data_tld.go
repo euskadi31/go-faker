@@ -5193,6 +5193,31 @@ var dataTLDs = []string{
 	"wcape.school.za",
 }
 
+// asciiTLDs is the subset of dataTLDs containing only ASCII labels. IDN TLDs
+// (e.g. "手机", "δοκιμή") are excluded so generated fake emails remain valid
+// without Punycode conversion.
+var asciiTLDs = func() []string {
+	out := make([]string, 0, len(dataTLDs))
+
+	for _, tld := range dataTLDs {
+		ascii := true
+
+		for i := 0; i < len(tld); i++ {
+			if tld[i] >= 0x80 {
+				ascii = false
+
+				break
+			}
+		}
+
+		if ascii {
+			out = append(out, tld)
+		}
+	}
+
+	return out
+}()
+
 func pickTLD(rng *rand.Rand) string {
-	return pick(rng, dataTLDs)
+	return pick(rng, asciiTLDs)
 }
