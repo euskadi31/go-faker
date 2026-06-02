@@ -4,7 +4,7 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/euskadi31/go-faker)](https://goreportcard.com/report/github.com/euskadi31/go-faker)
 [![Build Status](https://github.com/euskadi31/go-faker/actions/workflows/go.yml/badge.svg?branch=master)](https://github.com/euskadi31/go-faker/actions/workflows/go.yml)
 [![Coverage Status](https://coveralls.io/repos/github/euskadi31/go-faker/badge.svg?branch=master)](https://coveralls.io/github/euskadi31/go-faker?branch=master)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 A small, dependency-light fake data generator for Go. It produces realistic test
 fixtures (people, emails, passwords, dates, MAC addresses, locales, timezones,

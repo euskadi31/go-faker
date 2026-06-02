@@ -16,7 +16,7 @@ const secondsPerDay = 86400
 // ErrInvalidRange is returned by the date and time generators when the supplied
 // from value is after the to value. The equal case (from == to) is valid and
 // yields that exact instant or date.
-var ErrInvalidRange = errors.New("faker: invalid range: from is after to")
+var ErrInvalidRange = errors.New("invalid range: from is after to")
 
 // Default generation ranges. All bounds are inclusive and expressed in UTC.
 var (
