@@ -32,3 +32,13 @@ func shuffle[T any](rng *rand.Rand, values []T) {
 		values[i], values[j] = values[j], values[i]
 	}
 }
+
+// randomInt64Inclusive returns a pseudo-random int64 in the inclusive range
+// [lo, hi] using rng. Callers must ensure lo <= hi.
+func randomInt64Inclusive(rng *rand.Rand, lo, hi int64) int64 {
+	if lo == hi {
+		return lo
+	}
+
+	return lo + rng.Int64N(hi-lo+1) // hi-lo+1 >= 2, so Int64N never panics.
+}
