@@ -9,7 +9,9 @@
       "Bash(rtk git *)",
       "Bash(rtk go *)",
       "Bash(rtk proxy *)",
-      "Bash(command -v golangci-lint)"
+      "Bash(command -v golangci-lint)",
+      "Bash(rtk ls *)",
+      "Bash(rtk read *)"
     ]
   }
 }
