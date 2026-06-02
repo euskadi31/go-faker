@@ -11,7 +11,10 @@
       "Bash(rtk proxy *)",
       "Bash(command -v golangci-lint)",
       "Bash(rtk ls *)",
-      "Bash(rtk read *)"
+      "Bash(rtk read *)",
+      "Bash(git remote *)",
+      "Bash(rtk gh *)",
+      "Bash(git mv *)"
     ]
   }
 }
