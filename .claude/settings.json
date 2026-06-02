@@ -4,7 +4,12 @@
       "Bash(go version *)",
       "Bash(golangci-lint version *)",
       "Bash(gh api *)",
-      "Bash(gh pr *)"
+      "Bash(gh pr *)",
+      "Bash(git checkout *)",
+      "Bash(rtk git *)",
+      "Bash(rtk go *)",
+      "Bash(rtk proxy *)",
+      "Bash(command -v golangci-lint)"
     ]
   }
 }
