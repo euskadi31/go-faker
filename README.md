@@ -181,6 +181,35 @@ f.MACAddress(faker.WithMACPrefix("0a:1b:2c"))     // fixes the first bytes
 The prefix accepts `:` or `-` separators and is case-insensitive. Invalid
 prefixes are ignored.
 
+### Enterprise identifiers
+
+Synthetic business / legal-entity identifiers. Checksums match the public
+specification when one is defined (Luhn for SIREN/SIRET, ISO 7064 mod 97-10
+for LEI and EUID, the documented mod 97 for FR/BE VAT, mod 11 for PT, Luhn
+for IT, divisibility by 11 for SK). Other VAT countries are format-only —
+correct length and charset, no checksum.
+
+```go
+f := faker.New()
+
+f.SIREN()      // "732829320"             French SIREN (9 digits, Luhn)
+f.SIRET()      // "73282932000074"        French SIRET (14 digits, Luhn)
+f.EIN()        // "12-3456789"            US Employer Identification Number
+f.DUNS()       // "123456789"             9-digit DUNS
+f.LEI()        // "529900T8BM49AURSDO55"  ISO 17442 LEI (20 alnum, mod 97-10)
+
+f.VATNumber()                              // random EU member state, "FR40732829320"
+f.VATNumber(faker.WithVATCountry("DE"))    // "DE123456789"
+f.VATNumber(faker.WithVATCountry("BE"))    // "BE0123456789"
+
+f.EUID()                                   // "FR.NNN.123456789.45"
+f.EUID(faker.WithEUIDCountry("FR"))        // forces the country prefix
+```
+
+`WithVATCountry` / `WithEUIDCountry` accept any ISO-3166-1 alpha-2 code of the
+27 EU member states. An empty or unknown value falls back to a random member
+state, mirroring how `WithLocaleSeparator` handles unsupported input.
+
 ### Bytes
 
 `Bytes` draws from the Faker's RNG (deterministic with `WithRand`). For
